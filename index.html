@@ -377,7 +377,7 @@
        SERVICES
     ════════════════════════════════════════════════════ */
     #services {
-      background: var(--white);
+      background: var(--orange);
       padding: 7rem 5vw;
     }
 
@@ -386,18 +386,23 @@
       margin-bottom: 5rem;
     }
 
-    .services-header .label { margin-bottom: .75rem; }
+    .services-header .label {
+      margin-bottom: .75rem;
+      color: rgba(255,255,255,.7);
+    }
+
+    .services-header .h2 { color: var(--white); }
 
     .services-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      border-top: 1px solid var(--gray-light);
+      border-top: 1px solid rgba(255,255,255,.25);
     }
 
     .service-item {
       padding: 3rem 2.5rem;
-      border-bottom: 1px solid var(--gray-light);
-      border-right: 1px solid var(--gray-light);
+      border-bottom: 1px solid rgba(255,255,255,.25);
+      border-right: 1px solid rgba(255,255,255,.25);
       position: relative;
       transition: background .25s var(--ease);
     }
@@ -411,42 +416,42 @@
       left: 2.5rem;
       width: 0;
       height: 2px;
-      background: var(--orange);
+      background: var(--white);
       transition: width .3s var(--ease);
     }
 
     .service-item:hover::before { width: 40px; }
-    .service-item:hover { background: var(--off-white); }
+    .service-item:hover { background: rgba(0,0,0,.08); }
 
     .service-name {
       font-weight: 600;
       font-size: 1.1rem;
-      color: var(--dark);
+      color: var(--white);
       margin-bottom: .5rem;
       margin-top: 1.25rem;
-      transition: color .2s var(--ease);
+      transition: opacity .2s var(--ease);
     }
 
-    .service-item:hover .service-name { color: var(--orange); }
+    .service-item:hover .service-name { opacity: .8; }
 
     .service-desc {
       font-size: .9rem;
       line-height: 1.65;
-      color: var(--gray-mid);
+      color: rgba(255,255,255,.75);
       margin-bottom: 1.5rem;
       max-width: 320px;
     }
 
     .service-price {
       font-size: .85rem;
-      font-weight: 600;
-      color: var(--dark);
+      font-weight: 700;
+      color: var(--white);
       letter-spacing: .04em;
     }
 
     .service-price span {
       font-weight: 400;
-      color: var(--gray-mid);
+      color: rgba(255,255,255,.65);
       margin-left: .4rem;
     }
 
@@ -554,10 +559,20 @@
 
     .team-header {
       text-align: center;
-      margin-bottom: 5rem;
+      margin-bottom: 4rem;
     }
 
     .team-header .label { margin-bottom: .75rem; }
+
+    .team-photo-banner {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      margin-bottom: 5rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
 
     .team-grid {
       display: grid;
@@ -987,9 +1002,9 @@
       </div>
 
       <h1 class="hero-heading">
-        Premium<br>
-        Barbering<br>
-        <em>done right.</em>
+        Tudor<br>
+        Saloon<br>
+        <em>by Marius Boariu.</em>
       </h1>
 
       <p class="hero-body">
@@ -1023,8 +1038,6 @@
       <span class="hero-image-caption">Tudor Saloon &mdash; Iași</span>
     </div>
   </section>
-
-  <hr class="divider" />
 
   <!-- ── Services ───────────────────────────────────── -->
   <section id="services">
@@ -1112,8 +1125,14 @@
   <section id="team">
     <div class="team-header">
       <p class="label label--orange">The people</p>
-      <h2 class="h2" style="margin-top:.5rem">Our Barbers</h2>
+      <h2 class="h2" style="margin-top:.5rem">Our Team</h2>
     </div>
+
+    <img
+      src="assets/images/team.jpg"
+      alt="The Tudor Saloon team"
+      class="team-photo-banner"
+    />
 
     <div class="team-grid">
       <div class="team-member">
