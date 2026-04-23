@@ -3,873 +3,831 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Tudor Saloon — Premium barbershop in Iași, Romania. Expert cuts, classic shaves, modern style." />
+  <meta name="description" content="Tudor Saloon — Premium barbershop by Marius Boariu. Iași, Romania. Est. 2019." />
   <title>Tudor Saloon — Premium Barbershop, Iași</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
   <style>
-    /* ─── Reset & Base ─────────────────────────────────────────────── */
+    /* ── Reset ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --orange:   #F29022;
-      --orange2:  #ff8c42;
-      --white:    #FFFFFF;
-      --dark:     #1A1A1A;
-      --dark2:    #111111;
-      --mid:      #2a2a2a;
-      --font-display: 'Anton', sans-serif;
-      --font-body:    'Inter', sans-serif;
+      --orange:     #F29022;
+      --gold:       #D4A574;
+      --white:      #FFFFFF;
+      --off-white:  #FAFAFA;
+      --dark:       #1a1a1a;
+      --gray-mid:   #666666;
+      --gray-light: #E8E8E8;
+      --gray-faint: #F5F5F5;
+      --black:      #0f0f0f;
+
+      --f-display: 'Anton', sans-serif;
+      --f-body:    'Inter', sans-serif;
+
+      --ease: cubic-bezier(.4,0,.2,1);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: 16px; }
 
     body {
-      font-family: var(--font-body);
-      background: var(--dark);
-      color: var(--white);
+      font-family: var(--f-body);
+      background: var(--white);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
     img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+    ul  { list-style: none; }
 
-    a { text-decoration: none; color: inherit; }
-
-    /* ─── Keyframes ────────────────────────────────────────────────── */
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-14px); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    @keyframes slideRight {
-      from { opacity: 0; transform: translateX(-60px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(242,144,34,.5); }
-      50%       { box-shadow: 0 0 0 18px rgba(242,144,34,0); }
-    }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    .animate { opacity: 0; }
-    .animate.in { animation: fadeUp .7s ease forwards; }
-
-    /* ─── Utility ──────────────────────────────────────────────────── */
-    .section-label {
-      font-family: var(--font-body);
+    /* ── Typography helpers ─────────────────────────────── */
+    .label {
       font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+    }
+
+    .label--orange { color: var(--orange); }
+
+    .h1 {
+      font-family: var(--f-body);
       font-weight: 700;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: .75rem;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -.5px;
+      line-height: 1.1;
+      color: var(--dark);
     }
 
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      letter-spacing: -2px;
-      line-height: .95;
-      text-transform: uppercase;
+    .h2 {
+      font-family: var(--f-body);
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      letter-spacing: -.3px;
+      line-height: 1.15;
+      color: var(--dark);
     }
 
+    .body-text {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--gray-mid);
+      letter-spacing: .02em;
+    }
+
+    /* ── Accent line ────────────────────────────────────── */
+    .accent-line {
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: var(--orange);
+      margin-bottom: 1.75rem;
+    }
+
+    /* ── Button ─────────────────────────────────────────── */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .9rem 2rem;
-      border-radius: 4px;
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: .9rem;
-      letter-spacing: .08em;
+      display: inline-block;
+      padding: .75rem 1.75rem;
+      font-family: var(--f-body);
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .06em;
       text-transform: uppercase;
+      border: 1px solid var(--dark);
+      background: var(--white);
+      color: var(--dark);
       cursor: pointer;
+      transition: background .25s var(--ease), color .25s var(--ease);
+    }
+
+    .btn:hover {
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    .btn--dark {
+      background: var(--dark);
+      color: var(--white);
+      border-color: var(--dark);
+    }
+
+    .btn--dark:hover {
+      background: #333;
+      color: var(--white);
+    }
+
+    /* ── Divider ─────────────────────────────────────────── */
+    .divider {
       border: none;
-      transition: transform .2s, box-shadow .2s;
+      border-top: 1px solid var(--gray-light);
+      margin: 0;
     }
 
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,.3); }
-    .btn:active { transform: translateY(0); }
-
-    .btn-primary {
-      background: var(--dark);
-      color: var(--white);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      border: 2px solid rgba(255,255,255,.6);
-    }
-
-    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
-
-    .btn-dark {
-      background: var(--dark);
-      color: var(--orange);
-    }
-
-    /* ─── Header / Nav ─────────────────────────────────────────────── */
+    /* ════════════════════════════════════════════════════
+       HEADER
+    ════════════════════════════════════════════════════ */
     #header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 1000;
-      padding: 1.1rem 2rem;
+      z-index: 100;
+      height: 72px;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
       display: flex;
       align-items: center;
+      padding: 0 5vw;
       justify-content: space-between;
-      transition: background .3s, backdrop-filter .3s, box-shadow .3s;
+      transition: border-color .3s var(--ease);
     }
 
-    #header.scrolled {
-      background: rgba(26,26,26,.92);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 2px 24px rgba(0,0,0,.4);
-    }
+    #header.scrolled { border-bottom-color: var(--gray-light); }
 
     .nav-logo img {
-      height: 44px;
+      height: 38px;
       width: auto;
       display: block;
-      filter: invert(1) brightness(2);
-      transition: opacity .2s;
     }
-
-    #header.scrolled .nav-logo img { filter: invert(1) brightness(2); }
-    .nav-logo:hover img { opacity: .85; }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
-      list-style: none;
+      align-items: center;
+      gap: 2.5rem;
     }
 
     .nav-links a {
-      font-size: .85rem;
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--gray-mid);
+      transition: color .2s var(--ease);
+    }
+
+    .nav-links a:hover { color: var(--dark); }
+
+    .nav-links .nav-book {
       font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.75);
-      transition: color .2s;
+      color: var(--dark);
+      padding-bottom: 1px;
+      border-bottom: 1px solid var(--dark);
+      transition: color .2s var(--ease), border-color .2s var(--ease);
     }
 
-    .nav-links a:hover { color: var(--orange); }
-
-    .nav-cta {
-      background: var(--orange);
-      color: var(--white) !important;
-      padding: .55rem 1.3rem;
-      border-radius: 4px;
-      font-weight: 700 !important;
-      transition: background .2s !important;
+    .nav-links .nav-book:hover {
+      color: var(--orange);
+      border-color: var(--orange);
     }
 
-    .nav-cta:hover { background: var(--orange2) !important; color: var(--white) !important; }
-
+    /* Burger */
     .nav-burger {
       display: none;
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
+      background: none;
+      border: none;
       padding: 4px;
     }
 
     .nav-burger span {
       display: block;
-      width: 26px;
-      height: 2px;
-      background: var(--white);
-      border-radius: 2px;
-      transition: transform .3s, opacity .3s;
+      width: 22px;
+      height: 1.5px;
+      background: var(--dark);
+      transition: transform .3s var(--ease), opacity .3s var(--ease);
     }
 
-    /* Mobile nav */
+    /* Mobile nav overlay */
     #mobile-nav {
       display: none;
       position: fixed;
       inset: 0;
-      z-index: 999;
-      background: var(--dark2);
+      z-index: 99;
+      background: var(--white);
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      gap: 2.5rem;
+      padding: 0 5vw;
+      gap: 2rem;
     }
 
     #mobile-nav.open { display: flex; }
 
-    .mobile-nav-logo {
-      display: block;
-      margin-bottom: 1rem;
-    }
-
-    .mobile-nav-logo img {
-      height: 70px;
-      width: auto;
-      filter: invert(1) brightness(2);
-    }
-
     #mobile-nav a {
-      font-family: var(--font-display);
-      font-size: 2.8rem;
-      letter-spacing: -1px;
-      color: var(--white);
-      text-transform: uppercase;
-      transition: color .2s;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -.5px;
+      transition: color .2s var(--ease);
     }
 
     #mobile-nav a:hover { color: var(--orange); }
 
     #mobile-close {
       position: absolute;
-      top: 1.5rem; right: 2rem;
-      font-size: 2rem;
+      top: 1.4rem; right: 5vw;
+      font-size: 1.4rem;
       cursor: pointer;
-      color: var(--white);
       background: none;
       border: none;
+      color: var(--dark);
+      line-height: 1;
     }
 
-    /* ─── Marquee ──────────────────────────────────────────────────── */
-    .marquee-wrap {
-      background: var(--orange);
-      overflow: hidden;
-      padding: .55rem 0;
-      white-space: nowrap;
-    }
-
-    .marquee-track {
-      display: inline-block;
-      animation: marquee 22s linear infinite;
-    }
-
-    .marquee-track span {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin: 0 2rem;
-    }
-
-    .marquee-track span::before {
-      content: '✦';
-      margin-right: 2rem;
-      opacity: .7;
-    }
-
-    /* ─── Hero ─────────────────────────────────────────────────────── */
+    /* ════════════════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════════════════ */
     #hero {
       min-height: 100vh;
-      background: var(--orange);
+      padding-top: 72px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 60% 40%;
       align-items: center;
-      padding: 7rem 5vw 4rem;
-      position: relative;
-      overflow: hidden;
+      background: var(--white);
     }
 
-    .hero-bg-text {
-      position: absolute;
-      bottom: -2rem;
-      left: -1rem;
-      font-family: var(--font-display);
-      font-size: clamp(8rem, 18vw, 20rem);
-      color: rgba(255,255,255,.06);
-      letter-spacing: -8px;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
+    .hero-content {
+      padding: 6rem 5vw 6rem 5vw;
     }
 
-    .hero-content { position: relative; z-index: 1; animation: slideRight .9s ease both; }
-
-    .hero-badge {
-      display: inline-flex;
+    .hero-eyebrow {
+      display: flex;
       align-items: center;
-      gap: .5rem;
-      background: rgba(255,255,255,.15);
-      border: 1px solid rgba(255,255,255,.3);
-      padding: .45rem 1rem;
-      border-radius: 100px;
-      font-size: .8rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 1.5rem;
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
 
-    .hero-badge::before { content: '●'; font-size: .5rem; color: var(--white); animation: pulse 2s infinite; }
+    .hero-eyebrow-line {
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gray-mid);
+    }
 
     .hero-heading {
-      font-family: var(--font-display);
-      font-size: clamp(4rem, 10vw, 10rem);
-      letter-spacing: -5px;
-      line-height: .88;
-      text-transform: uppercase;
-      color: var(--white);
+      font-family: var(--f-body);
+      font-weight: 700;
+      font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+      letter-spacing: -.5px;
+      line-height: 1.1;
+      color: var(--dark);
       margin-bottom: 1.5rem;
     }
 
     .hero-heading em {
-      font-style: normal;
-      color: var(--dark);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gray-mid);
     }
 
-    .hero-sub {
+    .hero-body {
       font-size: 1.05rem;
-      font-weight: 500;
-      color: rgba(255,255,255,.85);
-      max-width: 420px;
       line-height: 1.7;
+      color: var(--gray-mid);
+      max-width: 400px;
       margin-bottom: 2.5rem;
     }
 
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    .hero-stats {
+    .hero-actions {
       display: flex;
-      gap: 2.5rem;
-      margin-top: 3.5rem;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .hero-link {
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--gray-mid);
+      border-bottom: 1px solid var(--gray-light);
+      padding-bottom: 1px;
+      transition: color .2s var(--ease), border-color .2s var(--ease);
+    }
+
+    .hero-link:hover {
+      color: var(--dark);
+      border-color: var(--dark);
+    }
+
+    .hero-meta {
+      margin-top: 4rem;
       padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,.25);
+      border-top: 1px solid var(--gray-light);
+      display: flex;
+      gap: 3rem;
     }
 
     .hero-stat-num {
-      font-family: var(--font-display);
-      font-size: 2.8rem;
-      letter-spacing: -2px;
-      color: var(--white);
-      line-height: 1;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--dark);
+      letter-spacing: -.5px;
+      display: block;
     }
 
     .hero-stat-label {
-      font-size: .75rem;
-      font-weight: 600;
-      letter-spacing: .12em;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      display: block;
+      margin-top: .15rem;
+    }
+
+    /* Hero image side */
+    .hero-image {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(15%);
+    }
+
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--white) 0%, transparent 8%);
+    }
+
+    .hero-image-caption {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2rem;
+      writing-mode: vertical-rl;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .15em;
       text-transform: uppercase;
       color: rgba(255,255,255,.7);
-      margin-top: .3rem;
     }
 
-    /* Hero visual */
-    .hero-visual {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 1s .3s ease both;
-    }
-
-    .hero-circle {
-      width: clamp(280px, 38vw, 520px);
-      height: clamp(280px, 38vw, 520px);
-      border-radius: 50%;
-      background: rgba(255,255,255,.12);
-      border: 2px solid rgba(255,255,255,.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .hero-circle-inner {
-      width: 82%;
-      height: 82%;
-      border-radius: 50%;
-      background: rgba(26,26,26,.35);
-      backdrop-filter: blur(8px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: .6rem;
-      border: 1px solid rgba(255,255,255,.15);
-    }
-
-    .hero-icon {
-      font-size: clamp(3.5rem, 7vw, 6rem);
-      line-height: 1;
-    }
-
-    .hero-circle-label {
-      font-family: var(--font-display);
-      font-size: clamp(1.2rem, 2.5vw, 2rem);
-      letter-spacing: -.5px;
-      color: var(--white);
-      text-align: center;
-    }
-
-    .hero-pill {
-      position: absolute;
-      background: var(--white);
-      color: var(--dark);
-      font-weight: 700;
-      font-size: .78rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      padding: .55rem 1.1rem;
-      border-radius: 100px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.2);
-      white-space: nowrap;
-    }
-
-    .hero-pill-1 { top: 12%; right: -4%; }
-    .hero-pill-2 { bottom: 15%; left: -8%; }
-    .hero-pill-3 { top: 50%; right: -12%; }
-
-    /* ─── Services ─────────────────────────────────────────────────── */
+    /* ════════════════════════════════════════════════════
+       SERVICES
+    ════════════════════════════════════════════════════ */
     #services {
       background: var(--white);
       padding: 7rem 5vw;
     }
 
     .services-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 4rem;
-      flex-wrap: wrap;
-      gap: 1.5rem;
+      text-align: center;
+      margin-bottom: 5rem;
     }
 
-    .services-header .section-title { color: var(--dark); }
-    .services-header .section-label { color: var(--orange); }
+    .services-header .label { margin-bottom: .75rem; }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--gray-light);
     }
 
-    .service-card {
-      background: var(--white);
-      border: 1px solid #e8e8e8;
-      border-left: 5px solid var(--orange);
-      border-radius: 8px;
-      padding: 2.2rem 1.8rem;
-      transition: transform .25s, box-shadow .25s;
-      cursor: default;
+    .service-item {
+      padding: 3rem 2.5rem;
+      border-bottom: 1px solid var(--gray-light);
+      border-right: 1px solid var(--gray-light);
+      position: relative;
+      transition: background .25s var(--ease);
     }
 
-    .service-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 50px rgba(242,144,34,.18);
+    .service-item:nth-child(even) { border-right: none; }
+
+    .service-item::before {
+      content: '';
+      position: absolute;
+      top: 3rem;
+      left: 2.5rem;
+      width: 0;
+      height: 2px;
+      background: var(--orange);
+      transition: width .3s var(--ease);
     }
 
-    .service-icon {
-      font-size: 2.4rem;
-      margin-bottom: 1.2rem;
-    }
+    .service-item:hover::before { width: 40px; }
+    .service-item:hover { background: var(--off-white); }
 
     .service-name {
-      font-family: var(--font-display);
-      font-size: 1.7rem;
-      letter-spacing: -1px;
+      font-weight: 600;
+      font-size: 1.1rem;
       color: var(--dark);
-      text-transform: uppercase;
       margin-bottom: .5rem;
+      margin-top: 1.25rem;
+      transition: color .2s var(--ease);
     }
+
+    .service-item:hover .service-name { color: var(--orange); }
 
     .service-desc {
       font-size: .9rem;
-      color: #555;
-      line-height: 1.7;
+      line-height: 1.65;
+      color: var(--gray-mid);
       margin-bottom: 1.5rem;
+      max-width: 320px;
     }
 
     .service-price {
-      display: flex;
-      align-items: baseline;
-      gap: .3rem;
-    }
-
-    .service-price-num {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      letter-spacing: -1px;
-      color: var(--orange);
-    }
-
-    .service-price-unit {
-      font-size: .8rem;
+      font-size: .85rem;
       font-weight: 600;
-      color: #999;
-      text-transform: uppercase;
+      color: var(--dark);
+      letter-spacing: .04em;
     }
 
-    /* ─── About ────────────────────────────────────────────────────── */
+    .service-price span {
+      font-weight: 400;
+      color: var(--gray-mid);
+      margin-left: .4rem;
+    }
+
+    /* ════════════════════════════════════════════════════
+       ABOUT
+    ════════════════════════════════════════════════════ */
     #about {
-      background: var(--dark2);
+      background: var(--off-white);
       padding: 7rem 5vw;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6rem;
+      gap: 6vw;
       align-items: center;
     }
 
-    .about-label { color: var(--orange); }
+    .about-content {}
+
+    .about-content .label { margin-bottom: 1rem; }
 
     .about-heading {
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 5.5vw, 5rem);
-      letter-spacing: -2px;
-      line-height: .95;
-      text-transform: uppercase;
-      color: var(--white);
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      letter-spacing: -.3px;
+      line-height: 1.15;
+      color: var(--dark);
       margin-bottom: 1.5rem;
     }
 
-    .about-heading span { color: var(--orange); }
-
     .about-body {
-      font-size: .95rem;
-      color: rgba(255,255,255,.7);
+      font-size: 1rem;
       line-height: 1.8;
-      margin-bottom: 2.5rem;
+      color: var(--gray-mid);
+      margin-bottom: 1rem;
     }
 
     .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .about-stat {
-      border-left: 3px solid var(--orange);
-      padding-left: 1rem;
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-light);
     }
 
     .about-stat-num {
-      font-family: var(--font-display);
-      font-size: 3rem;
-      letter-spacing: -2px;
-      color: var(--white);
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--orange);
+      letter-spacing: -.5px;
+      display: block;
       line-height: 1;
     }
 
     .about-stat-label {
       font-size: .78rem;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.5);
-      margin-top: .3rem;
+      color: var(--gray-mid);
+      display: block;
+      margin-top: .35rem;
     }
 
-    .about-visual {
+    .about-image {
       position: relative;
     }
 
-    .about-card {
-      background: var(--mid);
-      border-radius: 12px;
-      padding: 2.5rem;
-      border: 1px solid rgba(255,255,255,.07);
+    .about-image img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      object-position: top center;
+      box-shadow: 0 8px 40px rgba(0,0,0,.1);
     }
 
-    .about-quote {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3.5vw, 3rem);
-      letter-spacing: -1px;
-      line-height: 1.1;
-      color: var(--white);
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
+    .about-image-tag {
+      position: absolute;
+      bottom: -1px;
+      left: -1px;
+      background: var(--white);
+      padding: 1.25rem 1.5rem;
     }
 
-    .about-quote span { color: var(--orange); }
-
-    .about-author {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .about-author-avatar {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: var(--orange);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      color: var(--white);
-      flex-shrink: 0;
-    }
-
-    .about-author-name {
+    .about-image-tag-name {
       font-weight: 700;
       font-size: .95rem;
+      color: var(--dark);
     }
 
-    .about-author-role {
-      font-size: .8rem;
-      color: var(--orange);
-      font-weight: 600;
-      text-transform: uppercase;
+    .about-image-tag-role {
+      font-size: .78rem;
+      font-weight: 500;
       letter-spacing: .08em;
-    }
-
-    .about-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .75rem;
-      margin-top: 2rem;
-    }
-
-    .about-tag {
-      background: rgba(242,144,34,.12);
-      border: 1px solid rgba(242,144,34,.3);
-      color: var(--orange);
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .1em;
       text-transform: uppercase;
-      padding: .4rem .9rem;
-      border-radius: 100px;
+      color: var(--orange);
+      margin-top: .2rem;
     }
 
-    /* ─── Team ─────────────────────────────────────────────────────── */
+    /* ════════════════════════════════════════════════════
+       TEAM
+    ════════════════════════════════════════════════════ */
     #team {
-      background: var(--dark);
+      background: var(--white);
       padding: 7rem 5vw;
     }
 
     .team-header {
       text-align: center;
-      margin-bottom: 4rem;
+      margin-bottom: 5rem;
     }
+
+    .team-header .label { margin-bottom: .75rem; }
 
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      max-width: 860px;
+      margin: 0 auto;
     }
 
-    .team-card {
+    .team-member {
       text-align: center;
-      transition: transform .25s;
+      cursor: default;
     }
-
-    .team-card:hover { transform: translateY(-6px); }
 
     .team-avatar {
-      width: 130px;
-      height: 130px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      background: var(--mid);
-      border: 3px solid var(--orange);
-      margin: 0 auto 1.2rem;
+      overflow: hidden;
+      margin: 0 auto 1.25rem;
+      border: 1px solid var(--gray-light);
+      background: var(--off-white);
+      transition: transform .3s var(--ease);
+    }
+
+    .team-member:hover .team-avatar { transform: scale(1.03); }
+
+    .team-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-avatar-placeholder {
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: border-color .25s, box-shadow .25s;
-    }
-
-    .team-card:hover .team-avatar {
-      border-color: var(--orange2);
-      box-shadow: 0 0 0 6px rgba(242,144,34,.2);
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: var(--gray-light);
     }
 
     .team-name {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      letter-spacing: -.5px;
-      text-transform: uppercase;
-      color: var(--white);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--dark);
       margin-bottom: .25rem;
     }
 
     .team-role {
-      font-size: .78rem;
+      font-size: .82rem;
+      font-weight: 400;
+      color: var(--gray-mid);
+      letter-spacing: .04em;
+    }
+
+    /* Founder feature */
+    .team-founder {
+      margin-top: 5rem;
+      padding-top: 4rem;
+      border-top: 1px solid var(--gray-light);
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .team-founder-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top;
+      box-shadow: 0 4px 24px rgba(0,0,0,.09);
+    }
+
+    .team-founder-label { margin-bottom: 1rem; }
+
+    .team-founder-name {
       font-weight: 700;
-      letter-spacing: .12em;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: -.3px;
+      color: var(--dark);
+      margin-bottom: .5rem;
+    }
+
+    .team-founder-title {
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--orange);
+      margin-bottom: 1.5rem;
     }
 
-    .team-bio {
-      font-size: .85rem;
-      color: rgba(255,255,255,.55);
-      line-height: 1.6;
-      margin-top: .75rem;
-      max-width: 220px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Founder spotlight */
-    .founder-spotlight {
-      background: linear-gradient(135deg, var(--orange) 0%, var(--orange2) 100%);
-      border-radius: 16px;
-      padding: 3rem;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .founder-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.2);
-      border: 3px solid rgba(255,255,255,.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      flex-shrink: 0;
-    }
-
-    .founder-tag {
-      background: rgba(255,255,255,.2);
-      border: 1px solid rgba(255,255,255,.4);
-      color: var(--white);
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      padding: .3rem .8rem;
-      border-radius: 100px;
-      display: inline-block;
-      margin-bottom: .8rem;
-    }
-
-    .founder-name {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      letter-spacing: -2px;
-      text-transform: uppercase;
-      color: var(--white);
-      line-height: .95;
-      margin-bottom: .75rem;
-    }
-
-    .founder-quote {
+    .team-founder-bio {
       font-size: 1rem;
-      color: rgba(255,255,255,.88);
-      line-height: 1.7;
-      font-style: italic;
+      line-height: 1.8;
+      color: var(--gray-mid);
+      margin-bottom: 1.5rem;
     }
 
-    /* ─── Contact ──────────────────────────────────────────────────── */
+    .team-founder-award {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--dark);
+      border-top: 1px solid var(--gray-light);
+      padding-top: 1.25rem;
+    }
+
+    .team-founder-award-line {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--orange);
+    }
+
+    /* ════════════════════════════════════════════════════
+       CONTACT
+    ════════════════════════════════════════════════════ */
     #contact {
-      background: linear-gradient(135deg, var(--orange) 0%, var(--orange2) 100%);
+      background: var(--dark);
       padding: 7rem 5vw;
     }
 
     .contact-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 6vw;
       align-items: start;
     }
 
+    .contact-left .label--orange { margin-bottom: 1.5rem; }
+
     .contact-heading {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 6rem);
-      letter-spacing: -3px;
-      text-transform: uppercase;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      letter-spacing: -.3px;
+      line-height: 1.15;
       color: var(--white);
-      line-height: .9;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .contact-sub {
-      font-size: .95rem;
-      color: rgba(255,255,255,.85);
+      font-size: 1rem;
       line-height: 1.7;
-      margin-bottom: 2.5rem;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 3rem;
     }
 
-    .contact-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
+    .contact-info { display: flex; flex-direction: column; gap: 1.75rem; }
 
-    .contact-card {
-      background: rgba(255,255,255,.15);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,.3);
-      border-radius: 12px;
-      padding: 1.4rem 1.6rem;
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      transition: background .2s, transform .2s;
-    }
+    .contact-info-item {}
 
-    .contact-card:hover {
-      background: rgba(255,255,255,.22);
-      transform: translateX(6px);
-    }
-
-    .contact-card-icon {
-      font-size: 1.6rem;
-      flex-shrink: 0;
-    }
-
-    .contact-card-label {
+    .contact-info-type {
       font-size: .72rem;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.7);
-      margin-bottom: .2rem;
+      color: rgba(255,255,255,.35);
+      margin-bottom: .4rem;
     }
 
-    .contact-card-value {
-      font-size: .95rem;
+    .contact-info-value {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--orange);
+      transition: opacity .2s var(--ease);
+    }
+
+    .contact-info-value:hover { opacity: .75; }
+
+    .contact-info-value--white {
+      color: rgba(255,255,255,.8);
+    }
+
+    .contact-hours {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+
+    .contact-hours-title {
+      font-size: .72rem;
       font-weight: 600;
-      color: var(--white);
-    }
-
-    .contact-form-wrap {
-      background: rgba(255,255,255,.15);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,.3);
-      border-radius: 16px;
-      padding: 2.5rem;
-    }
-
-    .form-title {
-      font-family: var(--font-display);
-      font-size: 1.8rem;
-      letter-spacing: -1px;
+      letter-spacing: .12em;
       text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      margin-bottom: 1rem;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      font-size: .9rem;
+      padding: .5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .hours-row:last-child { border-bottom: none; }
+
+    .hours-day { color: rgba(255,255,255,.5); }
+
+    .hours-time { color: rgba(255,255,255,.85); font-weight: 500; }
+
+    /* Contact form */
+    .contact-form-wrap {}
+
+    .contact-form-title {
+      font-weight: 700;
+      font-size: 1.25rem;
       color: var(--white);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      letter-spacing: -.2px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 0;
+      padding: .85rem 1rem;
+      color: var(--white);
+      font-family: var(--f-body);
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .2s var(--ease);
+      width: 100%;
+      -webkit-appearance: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,.25);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(255,255,255,.35);
+    }
+
+    .form-group select option { background: var(--dark); }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 90px;
     }
 
     .form-row {
@@ -878,144 +836,30 @@
       gap: 1rem;
     }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: .4rem;
-      margin-bottom: 1rem;
-    }
-
-    .form-group.full { grid-column: 1 / -1; }
-
-    .form-group label {
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.8);
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.3);
-      border-radius: 6px;
-      padding: .8rem 1rem;
-      color: var(--white);
-      font-family: var(--font-body);
-      font-size: .9rem;
-      outline: none;
-      transition: border-color .2s, background .2s;
-      width: 100%;
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(255,255,255,.45); }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: rgba(255,255,255,.7);
-      background: rgba(255,255,255,.18);
-    }
-
-    .form-group select option { background: var(--dark); color: var(--white); }
-
-    .form-group textarea { resize: vertical; min-height: 100px; }
-
     .form-submit {
       width: 100%;
-      background: var(--dark);
-      color: var(--white);
       padding: 1rem;
-      border-radius: 6px;
-      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--dark);
+      border: none;
+      font-family: var(--f-body);
+      font-size: .82rem;
       font-weight: 700;
-      font-size: .9rem;
       letter-spacing: .1em;
       text-transform: uppercase;
-      border: none;
       cursor: pointer;
-      transition: background .2s, transform .2s;
+      transition: background .2s var(--ease), color .2s var(--ease);
+      margin-top: .5rem;
     }
 
-    .form-submit:hover { background: #000; transform: translateY(-2px); }
+    .form-submit:hover { background: var(--orange); color: var(--white); }
 
-    /* ─── Footer ───────────────────────────────────────────────────── */
+    /* ════════════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════════════ */
     #footer {
-      background: var(--dark2);
-      border-top: 3px solid var(--orange);
-      padding: 4rem 5vw 2rem;
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      margin-bottom: 2rem;
-    }
-
-    .footer-logo {
-      font-family: var(--font-display);
-      font-size: 2.2rem;
-      letter-spacing: -1px;
-      color: var(--white);
-      margin-bottom: .8rem;
-    }
-
-    .footer-logo span { color: var(--orange); }
-
-    .footer-tagline {
-      font-size: .88rem;
-      color: rgba(255,255,255,.5);
-      line-height: 1.7;
-      max-width: 280px;
-    }
-
-    .footer-col-title {
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 1rem;
-    }
-
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: .65rem;
-    }
-
-    .footer-links a {
-      font-size: .88rem;
-      color: rgba(255,255,255,.55);
-      transition: color .2s;
-    }
-
-    .footer-links a:hover { color: var(--white); }
-
-    .footer-hours {
-      display: flex;
-      flex-direction: column;
-      gap: .5rem;
-    }
-
-    .footer-hour-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      font-size: .85rem;
-    }
-
-    .footer-hour-row span:first-child { color: rgba(255,255,255,.55); }
-    .footer-hour-row span:last-child { color: var(--white); font-weight: 600; }
-
-    .footer-bottom {
+      background: var(--black);
+      padding: 2.5rem 5vw;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1025,73 +869,90 @@
 
     .footer-copy {
       font-size: .8rem;
-      color: rgba(255,255,255,.35);
+      color: rgba(255,255,255,.3);
     }
 
-    .footer-copy span { color: var(--orange); }
-
-    .footer-socials {
+    .footer-links {
       display: flex;
-      gap: .75rem;
+      gap: 2rem;
     }
 
-    .footer-social {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      transition: background .2s, border-color .2s;
+    .footer-links a {
+      font-size: .8rem;
+      color: rgba(255,255,255,.3);
+      transition: color .2s var(--ease);
     }
 
-    .footer-social:hover { background: var(--orange); border-color: var(--orange); }
+    .footer-links a:hover { color: rgba(255,255,255,.7); }
 
-    /* ─── Responsive ───────────────────────────────────────────────── */
-    @media (max-width: 900px) {
-      #hero { grid-template-columns: 1fr; padding-top: 6rem; text-align: center; }
-      .hero-actions { justify-content: center; }
-      .hero-stats { justify-content: center; }
-      .hero-sub { margin-left: auto; margin-right: auto; }
-      .hero-visual { margin-top: 3rem; }
+    /* ════════════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      #hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
 
-      #about { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-content { padding: 5rem 5vw 3rem; }
+
+      .hero-image {
+        height: 55vw;
+        min-height: 300px;
+      }
+
+      #about {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image { order: -1; }
+
+      .about-image img { height: 400px; }
 
       .contact-inner { grid-template-columns: 1fr; }
 
-      .footer-top { grid-template-columns: 1fr 1fr; }
-      .footer-top > div:first-child { grid-column: 1 / -1; }
+      .team-founder {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .team-founder-img {
+        width: 220px;
+        height: 280px;
+      }
     }
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .nav-burger { display: flex; }
 
-      .hero-pill { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
 
-      .services-header { flex-direction: column; align-items: flex-start; }
+      .service-item { border-right: none; }
+      .service-item:nth-child(even) { border-right: none; }
 
-      .founder-spotlight { grid-template-columns: 1fr; text-align: center; }
-      .founder-avatar { margin: 0 auto; }
+      .team-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
 
       .form-row { grid-template-columns: 1fr; }
 
-      .footer-top { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; text-align: center; }
+      #footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-meta { gap: 2rem; }
+    }
+
+    @media (max-width: 400px) {
+      .team-grid { grid-template-columns: 1fr; max-width: 200px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ─── Mobile Nav ─────────────────────────────────────────────── -->
-  <nav id="mobile-nav" role="dialog" aria-label="Mobile navigation">
-    <button id="mobile-close" aria-label="Close menu">✕</button>
-    <a href="#hero" class="mobile-nav-logo">
-      <img src="assets/images/logo.png" alt="Tudor Saloon" />
-    </a>
+  <!-- ── Mobile Nav ─────────────────────────────────── -->
+  <nav id="mobile-nav" role="dialog" aria-label="Navigation">
+    <button id="mobile-close" aria-label="Close">&#x2715;</button>
     <a href="#hero">Home</a>
     <a href="#services">Services</a>
     <a href="#about">About</a>
@@ -1099,315 +960,279 @@
     <a href="#contact">Book</a>
   </nav>
 
-  <!-- ─── Header ────────────────────────────────────────────────── -->
-  <header id="header" role="banner">
+  <!-- ── Header ─────────────────────────────────────── -->
+  <header id="header">
     <a href="#hero" class="nav-logo">
-      <img src="assets/images/logo.png" alt="Tudor Saloon — by Marius Boariu" />
+      <img src="assets/images/logo.png" alt="Tudor Saloon" />
     </a>
 
-    <ul class="nav-links" role="list">
+    <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#team">Team</a></li>
-      <li><a href="#contact" class="nav-cta">Book Now</a></li>
+      <li><a href="#contact" class="nav-book">Book</a></li>
     </ul>
 
-    <button class="nav-burger" id="burger-btn" aria-label="Open menu" aria-expanded="false">
+    <button class="nav-burger" id="burger-btn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-  <!-- ─── Marquee ───────────────────────────────────────────────── -->
-  <div class="marquee-wrap" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Premium Cuts</span><span>Classic Shaves</span><span>Beard Grooming</span>
-      <span>Iași, Romania</span><span>Est. 2019</span><span>by Marius Boariu</span>
-      <span>Premium Cuts</span><span>Classic Shaves</span><span>Beard Grooming</span>
-      <span>Iași, Romania</span><span>Est. 2019</span><span>by Marius Boariu</span>
-    </div>
-  </div>
-
-  <!-- ─── Hero ──────────────────────────────────────────────────── -->
-  <section id="hero" aria-label="Hero">
-    <div class="hero-bg-text" aria-hidden="true">BARBER</div>
-
+  <!-- ── Hero ───────────────────────────────────────── -->
+  <section id="hero">
     <div class="hero-content">
-      <div class="hero-badge">Now booking — Iași</div>
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-line"></span>
+        <span class="label">Iași, Romania &mdash; Est. 2019</span>
+      </div>
 
       <h1 class="hero-heading">
-        THE ART<br>
-        OF THE<br>
-        <em>PERFECT</em><br>
-        CUT.
+        Premium<br>
+        Barbering<br>
+        <em>done right.</em>
       </h1>
 
-      <p class="hero-sub">
-        Premium barbershop experience in the heart of Iași. Founded by <strong>Marius Boariu</strong> — combining classic technique with modern style since 2019.
+      <p class="hero-body">
+        A refined barbershop experience by Marius Boariu. Classic technique, modern sensibility, exceptional results — every single visit.
       </p>
 
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Book Appointment</a>
-        <a href="#services" class="btn btn-outline">Our Services</a>
+        <a href="#contact" class="btn">Book an appointment</a>
+        <a href="#services" class="hero-link">View services</a>
       </div>
 
-      <div class="hero-stats">
+      <div class="hero-meta">
         <div>
-          <div class="hero-stat-num">5+</div>
-          <div class="hero-stat-label">Years Open</div>
+          <span class="hero-stat-num">5+</span>
+          <span class="hero-stat-label">Years open</span>
         </div>
         <div>
-          <div class="hero-stat-num">3K+</div>
-          <div class="hero-stat-label">Happy Clients</div>
+          <span class="hero-stat-num">3,000+</span>
+          <span class="hero-stat-label">Clients served</span>
         </div>
         <div>
-          <div class="hero-stat-num">4.9★</div>
-          <div class="hero-stat-label">Rating</div>
+          <span class="hero-stat-num">4.9</span>
+          <span class="hero-stat-label">Google rating</span>
         </div>
       </div>
     </div>
 
-    <div class="hero-visual" aria-hidden="true">
-      <div class="hero-circle">
-        <div class="hero-circle-inner">
-          <img src="assets/images/logo.png" alt="Tudor Saloon logo"
-               style="width:68%;filter:invert(1) brightness(2);margin-bottom:.4rem;" />
-        </div>
-      </div>
-      <div class="hero-pill hero-pill-1">Premium Cuts</div>
-      <div class="hero-pill hero-pill-2">Est. 2018 · Iași</div>
-      <div class="hero-pill hero-pill-3">4.9 ★ Rating</div>
+    <div class="hero-image">
+      <img src="assets/images/founder.jpg" alt="Tudor Saloon — Marius Boariu" />
+      <div class="hero-image-overlay"></div>
+      <span class="hero-image-caption">Tudor Saloon &mdash; Iași</span>
     </div>
   </section>
 
-  <!-- ─── Services ──────────────────────────────────────────────── -->
-  <section id="services" aria-label="Services">
-    <div class="services-header animate">
-      <div>
-        <p class="section-label">What We Offer</p>
-        <h2 class="section-title" style="color:var(--dark)">OUR<br>SERVICES</h2>
-      </div>
-      <a href="#contact" class="btn btn-dark">Book a Service</a>
+  <hr class="divider" />
+
+  <!-- ── Services ───────────────────────────────────── -->
+  <section id="services">
+    <div class="services-header">
+      <p class="label label--orange">What we offer</p>
+      <h2 class="h2" style="margin-top:.5rem">Services</h2>
     </div>
 
     <div class="services-grid">
-      <div class="service-card animate">
-        <div class="service-icon">✂️</div>
+      <div class="service-item">
         <div class="service-name">Haircut</div>
-        <p class="service-desc">Precision cuts tailored to your face shape and lifestyle. Classic, fade, textured — we do it all.</p>
-        <div class="service-price">
-          <span class="service-price-num">50</span>
-          <span class="service-price-unit">RON · 30min</span>
-        </div>
+        <p class="service-desc">Precision cut tailored to your face shape and style. Classic, fade, textured, or bespoke — executed with care.</p>
+        <div class="service-price">50 RON <span>/ 30 min</span></div>
       </div>
 
-      <div class="service-card animate">
-        <div class="service-icon">🪒</div>
-        <div class="service-name">Shave</div>
-        <p class="service-desc">Hot towel classic straight-razor shave. The full ritual — prep, lather, and a perfect close shave.</p>
-        <div class="service-price">
-          <span class="service-price-num">40</span>
-          <span class="service-price-unit">RON · 25min</span>
-        </div>
+      <div class="service-item">
+        <div class="service-name">Classic Shave</div>
+        <p class="service-desc">Hot towel preparation, premium lather, straight-razor shave. The full ritual — unhurried and precise.</p>
+        <div class="service-price">40 RON <span>/ 25 min</span></div>
       </div>
 
-      <div class="service-card animate">
-        <div class="service-icon">🧔</div>
+      <div class="service-item">
         <div class="service-name">Beard Trim</div>
-        <p class="service-desc">Shape, define, and style your beard. We'll sculpt your lines and keep your look sharp every time.</p>
-        <div class="service-price">
-          <span class="service-price-num">35</span>
-          <span class="service-price-unit">RON · 20min</span>
-        </div>
+        <p class="service-desc">Shape, define, and refine your beard. Clean lines, consistent form — kept sharp every time.</p>
+        <div class="service-price">35 RON <span>/ 20 min</span></div>
       </div>
 
-      <div class="service-card animate">
-        <div class="service-icon">👑</div>
+      <div class="service-item">
         <div class="service-name">Full Package</div>
-        <p class="service-desc">Haircut + shave + beard styling + hair wash. The complete Tudor Saloon experience — look your best.</p>
-        <div class="service-price">
-          <span class="service-price-num">110</span>
-          <span class="service-price-unit">RON · 75min</span>
-        </div>
+        <p class="service-desc">Haircut, shave, beard sculpt, and wash. The complete Tudor Saloon experience — unhurried from start to finish.</p>
+        <div class="service-price">110 RON <span>/ 75 min</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ─── About ─────────────────────────────────────────────────── -->
-  <section id="about" aria-label="About">
-    <div class="animate">
-      <p class="section-label about-label">Our Story</p>
-      <h2 class="about-heading">
-        WHERE CRAFT<br>
-        MEETS <span>STYLE.</span>
+  <hr class="divider" />
+
+  <!-- ── About ──────────────────────────────────────── -->
+  <section id="about">
+    <div class="about-content">
+      <p class="label label--orange">Our story</p>
+      <h2 class="about-heading" style="margin-top:.5rem">
+        Where craft<br>meets precision.
       </h2>
+
       <p class="about-body">
-        Founded in 2019 by <strong style="color:var(--white)">Marius Boariu</strong>, Tudor Saloon was built on a simple belief: every man deserves a great haircut and the confidence that comes with it. We're not just a barbershop — we're a space where tradition and modern grooming come together.
+        Founded in 2019 by Marius Boariu, Tudor Saloon was built on a single principle: every man deserves an exceptional barbershop experience. Not just a haircut — a ritual. A moment of care, skill, and attention to detail.
       </p>
       <p class="about-body">
-        Located at Bulevardul Chimiei nr. 7, River Tower's, Iași, our doors are open six days a week. Walk in or book ahead — we're ready for you.
+        Located in the heart of Iași at Bulevardul Chimiei nr. 7, River Tower's, we've served thousands of clients with the same quiet commitment we started with.
       </p>
 
       <div class="about-stats">
-        <div class="about-stat">
-          <div class="about-stat-num">5+</div>
-          <div class="about-stat-label">Years in business</div>
+        <div>
+          <span class="about-stat-num">2019</span>
+          <span class="about-stat-label">Est. Iași</span>
         </div>
-        <div class="about-stat">
-          <div class="about-stat-num">3K+</div>
-          <div class="about-stat-label">Clients served</div>
+        <div>
+          <span class="about-stat-num">3K+</span>
+          <span class="about-stat-label">Clients</span>
         </div>
-        <div class="about-stat">
-          <div class="about-stat-num">4</div>
-          <div class="about-stat-label">Expert barbers</div>
+        <div>
+          <span class="about-stat-num">4</span>
+          <span class="about-stat-label">Barbers</span>
         </div>
-        <div class="about-stat">
-          <div class="about-stat-num">4.9★</div>
-          <div class="about-stat-label">Google rating</div>
+        <div>
+          <span class="about-stat-num">4.9</span>
+          <span class="about-stat-label">Rating</span>
         </div>
       </div>
     </div>
 
-    <div class="about-visual animate">
-      <div class="about-card">
-        <blockquote class="about-quote">
-          "A GREAT CUT CHANGES <span>HOW YOU SEE YOURSELF.</span>"
-        </blockquote>
-        <div class="about-author">
-          <div class="about-author-avatar" style="background:none;padding:0;overflow:hidden;">
-            <img src="assets/images/founder.jpg" alt="Marius Boariu" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />
-          </div>
-          <div>
-            <div class="about-author-name">Marius Boariu</div>
-            <div class="about-author-role">Founder &amp; Master Barber</div>
-          </div>
-        </div>
-        <div class="about-tags">
-          <span class="about-tag">Precision Cuts</span>
-          <span class="about-tag">Classic Shaves</span>
-          <span class="about-tag">Beard Craft</span>
-          <span class="about-tag">Premium Products</span>
-          <span class="about-tag">Walk-ins Welcome</span>
-        </div>
+    <div class="about-image">
+      <img src="assets/images/founder.jpg" alt="Marius Boariu — Founder, Tudor Saloon" />
+      <div class="about-image-tag">
+        <div class="about-image-tag-name">Marius Boariu</div>
+        <div class="about-image-tag-role">Founder &amp; Master Barber</div>
       </div>
     </div>
   </section>
 
-  <!-- ─── Team ──────────────────────────────────────────────────── -->
-  <section id="team" aria-label="Our Team">
-    <div class="team-header animate">
-      <p class="section-label">The Crew</p>
-      <h2 class="section-title">MEET THE<br>BARBERS</h2>
+  <hr class="divider" />
+
+  <!-- ── Team ───────────────────────────────────────── -->
+  <section id="team">
+    <div class="team-header">
+      <p class="label label--orange">The people</p>
+      <h2 class="h2" style="margin-top:.5rem">Our Barbers</h2>
     </div>
 
     <div class="team-grid">
-      <div class="team-card animate">
-        <div class="team-avatar">💈</div>
+      <div class="team-member">
+        <div class="team-avatar">
+          <div class="team-avatar-placeholder">A</div>
+        </div>
         <div class="team-name">Alex</div>
         <div class="team-role">Senior Barber</div>
-        <p class="team-bio">Fade specialist with 5 years experience. Known for impossibly clean lines.</p>
       </div>
 
-      <div class="team-card animate">
-        <div class="team-avatar">✂️</div>
+      <div class="team-member">
+        <div class="team-avatar">
+          <div class="team-avatar-placeholder">M</div>
+        </div>
         <div class="team-name">Mihai</div>
         <div class="team-role">Classic Cuts</div>
-        <p class="team-bio">Old-school technique with a modern eye. Razor shaves are his specialty.</p>
       </div>
 
-      <div class="team-card animate">
-        <div class="team-avatar">🪒</div>
+      <div class="team-member">
+        <div class="team-avatar">
+          <div class="team-avatar-placeholder">A</div>
+        </div>
         <div class="team-name">Andrei</div>
-        <div class="team-role">Beard Artist</div>
-        <p class="team-bio">If it grows on your face, Andrei can shape it. Beard sculptures his forte.</p>
+        <div class="team-role">Beard Specialist</div>
       </div>
     </div>
 
-    <!-- Founder spotlight -->
-    <div class="founder-spotlight animate">
-      <div class="founder-avatar" style="background:none;padding:0;overflow:hidden;border:3px solid rgba(255,255,255,.5);">
-        <img src="assets/images/founder.jpg" alt="Marius Boariu — Founder"
-             style="width:100%;height:100%;object-fit:cover;object-position:top;" />
-      </div>
+    <!-- Founder feature -->
+    <div class="team-founder">
+      <img
+        src="assets/images/founder.jpg"
+        alt="Marius Boariu — Founder, Tudor Saloon"
+        class="team-founder-img"
+      />
       <div>
-        <span class="founder-tag">Founder &amp; Head Barber</span>
-        <h3 class="founder-name">Marius<br>Boariu</h3>
-        <p class="founder-quote">
-          "I started Tudor Saloon because I wanted to bring back the real barbershop experience — skilled hands, quality products, and a space where you actually look forward to your next visit. Winning competitions only made me want to raise the bar higher. That vision hasn't changed since day one."
+        <p class="label team-founder-label label--orange">Founder</p>
+        <h3 class="team-founder-name">Marius Boariu</h3>
+        <p class="team-founder-title">Master Barber &amp; Founder</p>
+        <p class="team-founder-bio">
+          Marius opened Tudor Saloon in 2019 with a clear vision — to raise the standard of barbering in Iași. Trained in classical technique and refined through years of practice, he brings the same focus to every client that he brings to competition.
         </p>
+        <p class="team-founder-bio">
+          His work has been recognised at national barber competitions, but the measure he cares most about is simpler: clients who leave looking and feeling their best.
+        </p>
+        <div class="team-founder-award">
+          <span class="team-founder-award-line"></span>
+          Competition awarded — Barber Beginners, Iași 2024
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── Contact ───────────────────────────────────────────────── -->
-  <section id="contact" aria-label="Contact and booking">
+  <!-- ── Contact ────────────────────────────────────── -->
+  <section id="contact">
     <div class="contact-inner">
-      <div class="animate">
-        <p class="section-label" style="color:rgba(255,255,255,.8)">Get in Touch</p>
-        <h2 class="contact-heading">
-          BOOK<br>YOUR<br>VISIT.
-        </h2>
+      <div class="contact-left">
+        <p class="label label--orange" style="margin-bottom:1.5rem">Get in touch</p>
+        <h2 class="contact-heading">Visit us<br>in Iași.</h2>
         <p class="contact-sub">
-          Ready for a fresh cut? Book a slot online or reach out directly — we'll fit you in.
+          Walk in or book ahead — we'll make sure you're well taken care of.
         </p>
 
-        <div class="contact-cards">
-          <a href="tel:+40748825666" class="contact-card">
-            <div class="contact-card-icon">📞</div>
-            <div>
-              <div class="contact-card-label">Phone</div>
-              <div class="contact-card-value">+40 748 825 666</div>
-            </div>
-          </a>
-
-          <a href="mailto:tudorsaloon@gmail.com" class="contact-card">
-            <div class="contact-card-icon">✉️</div>
-            <div>
-              <div class="contact-card-label">Email</div>
-              <div class="contact-card-value">tudorsaloon@gmail.com</div>
-            </div>
-          </a>
-
-          <div class="contact-card">
-            <div class="contact-card-icon">📍</div>
-            <div>
-              <div class="contact-card-label">Address</div>
-              <div class="contact-card-value">Bulevardul Chimiei nr. 7<br>River Tower's, Iași</div>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-type">Address</div>
+            <div class="contact-info-value contact-info-value--white">
+              Bulevardul Chimiei nr. 7<br>River Tower's, Iași, Romania
             </div>
           </div>
+          <div class="contact-info-item">
+            <div class="contact-info-type">Phone</div>
+            <a href="tel:+40748825666" class="contact-info-value">+40 748 825 666</a>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-type">Email</div>
+            <a href="mailto:tudorsaloon@gmail.com" class="contact-info-value">tudorsaloon@gmail.com</a>
+          </div>
+        </div>
 
-          <div class="contact-card">
-            <div class="contact-card-icon">🕐</div>
-            <div>
-              <div class="contact-card-label">Hours</div>
-              <div class="contact-card-value">Mon–Fri: 9:00–20:00<br>Sat: 9:00–18:00</div>
-            </div>
+        <div class="contact-hours">
+          <div class="contact-hours-title">Opening hours</div>
+          <div class="hours-row">
+            <span class="hours-day">Monday – Friday</span>
+            <span class="hours-time">09:00 – 20:00</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Saturday</span>
+            <span class="hours-time">09:00 – 18:00</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Sunday</span>
+            <span class="hours-time">Closed</span>
           </div>
         </div>
       </div>
 
-      <div class="contact-form-wrap animate">
-        <h3 class="form-title">Request a Booking</h3>
+      <div class="contact-form-wrap">
+        <h3 class="contact-form-title">Request a booking</h3>
         <form id="booking-form" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="fname">First Name</label>
+              <label for="fname">First name</label>
               <input type="text" id="fname" name="fname" placeholder="Ion" required />
             </div>
             <div class="form-group">
-              <label for="lname">Last Name</label>
+              <label for="lname">Last name</label>
               <input type="text" id="lname" name="lname" placeholder="Popescu" required />
             </div>
           </div>
 
           <div class="form-group">
-            <label for="phone">Phone Number</label>
+            <label for="phone">Phone</label>
             <input type="tel" id="phone" name="phone" placeholder="+40 7xx xxx xxx" required />
           </div>
 
           <div class="form-group">
             <label for="service">Service</label>
             <select id="service" name="service" required>
-              <option value="" disabled selected>Choose a service…</option>
+              <option value="" disabled selected>Select a service</option>
               <option value="haircut">Haircut — 50 RON</option>
               <option value="shave">Classic Shave — 40 RON</option>
               <option value="beard">Beard Trim — 35 RON</option>
@@ -1417,122 +1242,77 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="date">Preferred Date</label>
+              <label for="date">Date</label>
               <input type="date" id="date" name="date" required />
             </div>
             <div class="form-group">
-              <label for="time">Preferred Time</label>
+              <label for="time">Time</label>
               <input type="time" id="time" name="time" min="09:00" max="20:00" required />
             </div>
           </div>
 
           <div class="form-group">
             <label for="notes">Notes (optional)</label>
-            <textarea id="notes" name="notes" placeholder="Any preferences or requests…"></textarea>
+            <textarea id="notes" name="notes" placeholder="Any preferences or requests"></textarea>
           </div>
 
-          <button type="submit" class="form-submit">Request Appointment →</button>
+          <button type="submit" class="form-submit">Send request</button>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- ─── Footer ───────────────────────────────────────────────── -->
-  <footer id="footer" role="contentinfo">
-    <div class="footer-top">
-      <div>
-        <div class="footer-logo">
-          <img src="assets/images/logo.png" alt="Tudor Saloon"
-               style="height:64px;width:auto;filter:invert(1) brightness(2);margin-bottom:.6rem;" />
-        </div>
-        <p class="footer-tagline">Premium barbershop by Marius Boariu in Iași, Romania. Precision cuts, classic shaves, and modern grooming since 2019.</p>
-      </div>
-
-      <div>
-        <div class="footer-col-title">Navigate</div>
-        <ul class="footer-links">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#team">Our Team</a></li>
-          <li><a href="#contact">Book Now</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="footer-col-title">Hours</div>
-        <div class="footer-hours">
-          <div class="footer-hour-row"><span>Mon–Fri</span><span>9:00–20:00</span></div>
-          <div class="footer-hour-row"><span>Saturday</span><span>9:00–18:00</span></div>
-          <div class="footer-hour-row"><span>Sunday</span><span>Closed</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p class="footer-copy">&copy; 2024 <span>Tudor Saloon</span>. All rights reserved. · Iași, Romania</p>
-      <div class="footer-socials">
-        <a href="#" class="footer-social" aria-label="Instagram">📷</a>
-        <a href="#" class="footer-social" aria-label="Facebook">📘</a>
-        <a href="#" class="footer-social" aria-label="TikTok">🎵</a>
-      </div>
-    </div>
+  <!-- ── Footer ─────────────────────────────────────── -->
+  <footer id="footer">
+    <p class="footer-copy">&copy; 2024 Tudor Saloon by Marius Boariu. All rights reserved.</p>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Book</a>
+    </nav>
   </footer>
 
-  <!-- ─── JS ────────────────────────────────────────────────────── -->
+  <!-- ── JS ─────────────────────────────────────────── -->
   <script>
-    // Scrolled header
+    // Scrolled header border
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 40);
+      header.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
 
     // Mobile nav
-    const burger = document.getElementById('burger-btn');
-    const mobileNav = document.getElementById('mobile-nav');
+    const burger     = document.getElementById('burger-btn');
+    const mobileNav  = document.getElementById('mobile-nav');
     const mobileClose = document.getElementById('mobile-close');
 
     burger.addEventListener('click', () => {
       mobileNav.classList.add('open');
-      burger.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     });
 
     function closeNav() {
       mobileNav.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
 
     mobileClose.addEventListener('click', closeNav);
     mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 
-    // Scroll-triggered fade-in
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('in'), i * 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
+    // Date min = today
+    const dateInput = document.getElementById('date');
+    if (dateInput) {
+      dateInput.min = new Date().toISOString().split('T')[0];
+    }
 
-    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
-
-    // Booking form — basic feedback
+    // Form submit
     document.getElementById('booking-form').addEventListener('submit', function(e) {
       e.preventDefault();
       const btn = this.querySelector('.form-submit');
-      btn.textContent = '✓ Request Sent! We\'ll call you shortly.';
-      btn.style.background = '#1a7a1a';
+      btn.textContent = 'Request received — we\'ll be in touch shortly.';
+      btn.style.background = '#2a6e2a';
+      btn.style.color = '#fff';
       btn.disabled = true;
     });
-
-    // Set date input min to today
-    const dateInput = document.getElementById('date');
-    if (dateInput) {
-      const today = new Date().toISOString().split('T')[0];
-      dateInput.min = today;
-    }
   </script>
 </body>
 </html>
