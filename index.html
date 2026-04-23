@@ -146,14 +146,16 @@
       box-shadow: 0 2px 24px rgba(0,0,0,.4);
     }
 
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      letter-spacing: -1px;
-      color: var(--white);
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+      display: block;
+      filter: invert(1) brightness(2);
+      transition: opacity .2s;
     }
 
-    .nav-logo span { color: var(--orange); }
+    #header.scrolled .nav-logo img { filter: invert(1) brightness(2); }
+    .nav-logo:hover img { opacity: .85; }
 
     .nav-links {
       display: flex;
@@ -214,6 +216,17 @@
     }
 
     #mobile-nav.open { display: flex; }
+
+    .mobile-nav-logo {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .mobile-nav-logo img {
+      height: 70px;
+      width: auto;
+      filter: invert(1) brightness(2);
+    }
 
     #mobile-nav a {
       font-family: var(--font-display);
@@ -1076,6 +1089,9 @@
   <!-- ─── Mobile Nav ─────────────────────────────────────────────── -->
   <nav id="mobile-nav" role="dialog" aria-label="Mobile navigation">
     <button id="mobile-close" aria-label="Close menu">✕</button>
+    <a href="#hero" class="mobile-nav-logo">
+      <img src="assets/images/logo.png" alt="Tudor Saloon" />
+    </a>
     <a href="#hero">Home</a>
     <a href="#services">Services</a>
     <a href="#about">About</a>
@@ -1085,7 +1101,9 @@
 
   <!-- ─── Header ────────────────────────────────────────────────── -->
   <header id="header" role="banner">
-    <a href="#hero" class="nav-logo">TUDOR<span>.</span>SALOON</a>
+    <a href="#hero" class="nav-logo">
+      <img src="assets/images/logo.png" alt="Tudor Saloon — by Marius Boariu" />
+    </a>
 
     <ul class="nav-links" role="list">
       <li><a href="#services">Services</a></li>
@@ -1103,9 +1121,9 @@
   <div class="marquee-wrap" aria-hidden="true">
     <div class="marquee-track">
       <span>Premium Cuts</span><span>Classic Shaves</span><span>Beard Grooming</span>
-      <span>Iași, Romania</span><span>Est. 2018</span><span>Expert Barbers</span>
+      <span>Iași, Romania</span><span>Est. 2019</span><span>by Marius Boariu</span>
       <span>Premium Cuts</span><span>Classic Shaves</span><span>Beard Grooming</span>
-      <span>Iași, Romania</span><span>Est. 2018</span><span>Expert Barbers</span>
+      <span>Iași, Romania</span><span>Est. 2019</span><span>by Marius Boariu</span>
     </div>
   </div>
 
@@ -1124,7 +1142,7 @@
       </h1>
 
       <p class="hero-sub">
-        Premium barbershop experience in the heart of Iași. We combine classic technique with modern style — every visit, every time.
+        Premium barbershop experience in the heart of Iași. Founded by <strong>Marius Boariu</strong> — combining classic technique with modern style since 2019.
       </p>
 
       <div class="hero-actions">
@@ -1134,7 +1152,7 @@
 
       <div class="hero-stats">
         <div>
-          <div class="hero-stat-num">6+</div>
+          <div class="hero-stat-num">5+</div>
           <div class="hero-stat-label">Years Open</div>
         </div>
         <div>
@@ -1151,8 +1169,8 @@
     <div class="hero-visual" aria-hidden="true">
       <div class="hero-circle">
         <div class="hero-circle-inner">
-          <div class="hero-icon">✂️</div>
-          <div class="hero-circle-label">TUDOR<br>SALOON</div>
+          <img src="assets/images/logo.png" alt="Tudor Saloon logo"
+               style="width:68%;filter:invert(1) brightness(2);margin-bottom:.4rem;" />
         </div>
       </div>
       <div class="hero-pill hero-pill-1">Premium Cuts</div>
@@ -1223,7 +1241,7 @@
         MEETS <span>STYLE.</span>
       </h2>
       <p class="about-body">
-        Founded in 2018, Tudor Saloon was built on a simple belief: every man deserves a great haircut and the confidence that comes with it. We're not just a barbershop — we're a space where tradition and modern grooming come together.
+        Founded in 2019 by <strong style="color:var(--white)">Marius Boariu</strong>, Tudor Saloon was built on a simple belief: every man deserves a great haircut and the confidence that comes with it. We're not just a barbershop — we're a space where tradition and modern grooming come together.
       </p>
       <p class="about-body">
         Located at Bulevardul Chimiei nr. 7, River Tower's, Iași, our doors are open six days a week. Walk in or book ahead — we're ready for you.
@@ -1231,7 +1249,7 @@
 
       <div class="about-stats">
         <div class="about-stat">
-          <div class="about-stat-num">6+</div>
+          <div class="about-stat-num">5+</div>
           <div class="about-stat-label">Years in business</div>
         </div>
         <div class="about-stat">
@@ -1255,9 +1273,11 @@
           "A GREAT CUT CHANGES <span>HOW YOU SEE YOURSELF.</span>"
         </blockquote>
         <div class="about-author">
-          <div class="about-author-avatar">T</div>
+          <div class="about-author-avatar" style="background:none;padding:0;overflow:hidden;">
+            <img src="assets/images/founder.jpg" alt="Marius Boariu" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />
+          </div>
           <div>
-            <div class="about-author-name">Tudor</div>
+            <div class="about-author-name">Marius Boariu</div>
             <div class="about-author-role">Founder &amp; Master Barber</div>
           </div>
         </div>
@@ -1304,12 +1324,15 @@
 
     <!-- Founder spotlight -->
     <div class="founder-spotlight animate">
-      <div class="founder-avatar">👑</div>
+      <div class="founder-avatar" style="background:none;padding:0;overflow:hidden;border:3px solid rgba(255,255,255,.5);">
+        <img src="assets/images/founder.jpg" alt="Marius Boariu — Founder"
+             style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+      </div>
       <div>
         <span class="founder-tag">Founder &amp; Head Barber</span>
-        <h3 class="founder-name">Tudor<br>Saloon</h3>
+        <h3 class="founder-name">Marius<br>Boariu</h3>
         <p class="founder-quote">
-          "I started this place because I wanted to bring back the real barbershop experience — skilled hands, quality products, and a space where you actually look forward to your next visit. That vision hasn't changed since day one."
+          "I started Tudor Saloon because I wanted to bring back the real barbershop experience — skilled hands, quality products, and a space where you actually look forward to your next visit. Winning competitions only made me want to raise the bar higher. That vision hasn't changed since day one."
         </p>
       </div>
     </div>
@@ -1418,8 +1441,11 @@
   <footer id="footer" role="contentinfo">
     <div class="footer-top">
       <div>
-        <div class="footer-logo">TUDOR<span>.</span>SALOON</div>
-        <p class="footer-tagline">Premium barbershop in Iași, Romania. Precision cuts, classic shaves, and modern grooming since 2018.</p>
+        <div class="footer-logo">
+          <img src="assets/images/logo.png" alt="Tudor Saloon"
+               style="height:64px;width:auto;filter:invert(1) brightness(2);margin-bottom:.6rem;" />
+        </div>
+        <p class="footer-tagline">Premium barbershop by Marius Boariu in Iași, Romania. Precision cuts, classic shaves, and modern grooming since 2019.</p>
       </div>
 
       <div>
